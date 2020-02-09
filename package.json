@@ -1,0 +1,44 @@
+{
+  "name": "news-explorer-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xmal0x/news-explorer-api.git"
+  },
+  "author": "Kirill Galkin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xmal0x/news-explorer-api/issues"
+  },
+  "homepage": "https://github.com/xmal0x/news-explorer-api#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "install": "^0.13.0",
+    "nodemon": "^2.0.2",
+    "npm": "^6.13.7",
+    "autoprefixer": "^9.7.1",
+    "cross-env": "^6.0.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.8.7",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "celebrate": "^11.0.1",
+    "cookie-parser": "^1.4.4",
+    "winston": "^3.2.1",
+    "express-winston": "^4.0.2",
+    "file-loader": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "core-js": "^3.1.4",
+    "dotenv": "^8.2.0"
+  }
+}
