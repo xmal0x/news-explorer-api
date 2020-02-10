@@ -27,6 +27,9 @@ module.exports.deleteArticle = (req, res, next) => {
   Article.findById(articleId)
     // eslint-disable-next-line consistent-return
     .then((article) => {
+      if (!article) {
+        throw new RequestError('Некорректный запрос');
+      }
       if (article.owner.toString() === owner) {
         Article.findByIdAndDelete(articleId)
           .then(() => res.status(200).send({ data: articleId }));
