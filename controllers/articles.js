@@ -1,4 +1,5 @@
 const Article = require('../models/article.js');
+const RequestError = require('../errors/request-err.js');
 
 module.exports.getArticles = (req, res, next) => {
   Article.find({})
@@ -30,7 +31,7 @@ module.exports.deleteArticle = (req, res, next) => {
         Article.findByIdAndDelete(articleId)
           .then(() => res.status(200).send({ data: articleId }));
       } else {
-        throw new Error('У вас нет прав для удаления данной статьи');
+        throw new RequestError('У вас нет прав для удаления данной статьи');
       }
     }).catch(next);
 };

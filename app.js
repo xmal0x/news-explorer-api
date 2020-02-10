@@ -9,6 +9,7 @@ const usersRouter = require('./routes/users.js');
 const articlesRouter = require('./routes/articles.js');
 const auth = require('./middlewares/auth.js');
 const { requestLogger, errorLogger } = require('./middlewares/logger.js');
+const NotFoundError = require('./errors/not-found-err.js');
 
 const { login, createUser } = require('./controllers/users.js');
 
@@ -27,7 +28,7 @@ mongoose.connect('mongodb://localhost:27017/news', {
 });
 
 const badReq = () => {
-  throw new Error('Запрашиваемый ресурс не найден');
+  throw new NotFoundError('Запрашиваемый ресурс не найден');
 };
 
 app.use(express.static(path.join(__dirname, 'public')));

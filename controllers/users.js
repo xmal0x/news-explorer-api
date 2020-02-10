@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const { JWT_KEY } = require('../config.js');
+const RequestError = require('../errors/request-err.js');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -23,7 +24,7 @@ module.exports.createUser = (req, res, next) => {
   User.findOne({ email })
     .then((newUser) => {
       if (newUser) {
-        throw new Error('Email уже существует');
+        throw new RequestError('Email уже существует');
       }
       bcrypt.hash(password, 10)
         .then((hash) => User.create({
