@@ -1,5 +1,6 @@
 const Article = require('../models/article.js');
-const RequestError = require('../errors/request-err.js');
+const NotFoundError = require('../errors/not-found-err.js');
+const ForbiddenError = require('../errors/forbidden-err.js');
 
 module.exports.getArticles = (req, res, next) => {
   Article.find({})
@@ -28,13 +29,13 @@ module.exports.deleteArticle = (req, res, next) => {
     // eslint-disable-next-line consistent-return
     .then((article) => {
       if (!article) {
-        throw new RequestError('Некорректный запрос');
+        throw new NotFoundError('Карточки с таким ID не найдено');
       }
       if (article.owner.toString() === owner) {
         Article.findByIdAndDelete(articleId)
           .then(() => res.status(200).send({ data: articleId }));
       } else {
-        throw new RequestError('У вас нет прав для удаления данной статьи');
+        throw new ForbiddenError('У вас нет прав для удаления данной статьи');
       }
     }).catch(next);
 };

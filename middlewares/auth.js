@@ -21,7 +21,6 @@ module.exports = (req, res, next) => {
 
   try {
     const key = NODE_ENV === 'production' ? JWT_SECRET : JWT_KEY;
-
     payload = jwt.verify(cookie, key);
   } catch (error) {
     next(new AuthError('Необходима авторизация'));
