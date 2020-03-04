@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
+const cors = require('cors');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger.js');
 const router = require('./routes/index.js');
@@ -18,14 +19,10 @@ const { PORT = 3000 } = process.env;
 const MONGO_URL = NODE_ENV === 'production' ? MONGO_PATH : 'mongodb://localhost:27017/news';
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
 
 mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,
