@@ -13,7 +13,7 @@ module.exports.login = (req, res, next) => {
   User.findUserByCred(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, key, { expiresIn: '7d' });
-      res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true }).end();
+      res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true }).send({ token });
     })
     .catch(next);
 };
